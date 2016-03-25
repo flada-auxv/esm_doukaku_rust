@@ -1,41 +1,20 @@
 fn winner(str1: String, str2: String) -> String {
-    let repeated_str1 = (0..str2.len()).fold(String::new(), |acc, _| acc + &str1);
-    let repeated_str2 = (0..str1.len()).fold(String::new(), |acc, _| acc + &str2);
+    let repeated_str1 = std::iter::repeat(str1.clone()).take(str2.len()).collect::<String>();
+    let repeated_str2 = std::iter::repeat(str2.clone()).take(str1.len()).collect::<String>();
 
     if repeated_str1 == repeated_str2 {
         return str1;
     }
 
-    let mut repeated_str1_iter = repeated_str1.chars();
-    let mut repeated_str2_iter = repeated_str2.chars();
-
-    for _ in 0..repeated_str1.len() {
-        let mut s1 = String::new();
-        let mut s2 = String::new();
-
-        let ss1 = repeated_str1_iter.next();
-        let ss2 = repeated_str2_iter.next();
-
-        match ss1.and(ss2) {
-            Some(_) => {
-                s1 = ss1.unwrap().to_string();
-                s2 = ss2.unwrap().to_string();
-            }
-            _ => continue,
-        }
-
-        if s1 == s2 {
-            continue;
-        }
-
-        if (s1 == "R" && s2 == "S") || (s1 == "S" && s2 == "P") || (s1 == "P" && s2 == "R") {
-            return str1;
-        } else {
-            return str2;
+    for (c1, c2) in repeated_str1.chars().zip(repeated_str2.chars()) {
+        match (c1, c2) {
+            ('R', 'S') | ('S', 'P') | ('P', 'R') => return str1,
+            ('R', 'R') | ('S', 'S') | ('P', 'P') => continue,
+            _ => return str2,
         }
     }
 
-    return str1;
+    str1
 }
 
 fn solve(input: &str) -> String {
