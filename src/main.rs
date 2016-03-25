@@ -47,10 +47,7 @@ fn solve(input: &str) -> String {
         bracket = next_bracket;
     }
 
-    let mut result: String = "(".to_string();
-    result = result + &bracket[0];
-    result = result + ")";
-    result
+    format!("({})", bracket[0])
 }
 
 fn test(input: &str, expected: &str) {
