@@ -20,11 +20,10 @@ fn winner(str1: String, str2: String) -> String {
 fn solve(input: &str) -> String {
     let players: Vec<&str> = input.trim_matches(|c| c == '(' || c == ')').split(")(").collect();
 
-    let level = (players.len() as f32).log2().ceil() as u32;
-    let seeded_count = 2i32.pow(level) - (players.len() as i32);
-    // println!("{:?}", seeded_count);
+    let level = (players.len() as f32).log2().ceil();
+    let seeded_count = (2usize.pow(level as u32)) - players.len();
 
-    let (seeded, unseeded) = players.split_at(seeded_count as usize);
+    let (seeded, unseeded) = players.split_at(seeded_count);
 
     let mut bracket: Vec<String> = Vec::new();
     for player in seeded {
