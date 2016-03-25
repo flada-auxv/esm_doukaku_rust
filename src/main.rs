@@ -1,17 +1,27 @@
 extern crate regex;
 use regex::Regex;
 
-fn test(input: &str, winner: &str) {
+fn test(input: &str, expected: &str) {
     let players: Vec<&str> = input.trim_matches(|c| c == '(' || c == ')').split(")(").collect();
+
+    let actual = winner(players[0], players[1]);
+    let result = format!("({})", actual) == expected;
+
+    println!("{:?}", result);
 }
 
-fn winner(strategy1) {}
+fn winner(str1: &'static str, str2: &'static str) -> &'static str {
+    if (str1 == "R" && str2 == "S") || (str1 == "S" && str2 == "P") || (str1 == "P" && str2 == "R") {
+        str1
+    } else {
+        str2
+    }
+}
 
 fn main() {
     test("(R)(S)", "(R)");
     test("(S)(P)", "(S)");
     test("(P)(R)", "(P)");
-
 
     // test("(RSP)(R)(RPS)(SP)", "(RPS)");
     // test("(RPS)(R)(RSP)(SP)(RSSP)", "(RSSP)");
