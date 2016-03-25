@@ -52,16 +52,13 @@ fn solve(input: &str) -> String {
 
 fn test(input: &str, expected: &str) {
     let actual = solve(input);
+
     if actual == expected {
-        print!(".")
+        println!("pass")
     } else {
-        println!(r#"
-input:    {}
-expected: {}
-actual:   {}"#,
-                 input,
-                 expected,
-                 actual)
+        println!("input: {}", input);
+        println!("expected: {}", expected);
+        println!("actual: {}", actual);
     }
 }
 
