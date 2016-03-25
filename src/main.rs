@@ -2,16 +2,19 @@ extern crate regex;
 use regex::Regex;
 
 fn test(input: &str, expected: &str) {
-    let players: Vec<&str> = input.trim_matches(|c| c == '(' || c == ')').split(")(").collect();
+    let players = input.trim_matches(|c| c == '(' || c == ')')
+                       .split(")(")
+                       .collect::<Vec<&str>>();
 
-    let actual = winner(players[0], players[1]);
+    let actual = winner(players[0].to_string(), players[1].to_string());
     let result = format!("({})", actual) == expected;
 
     println!("{:?}", result);
 }
 
-fn winner(str1: &'static str, str2: &'static str) -> &'static str {
-    if (str1 == "R" && str2 == "S") || (str1 == "S" && str2 == "P") || (str1 == "P" && str2 == "R") {
+fn winner(str1: String, str2: String) -> String {
+    if (str1 == "R" && str2 == "S") || (str1 == "S" && str2 == "P") ||
+       (str1 == "P" && str2 == "R") {
         str1
     } else {
         str2
