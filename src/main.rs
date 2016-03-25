@@ -1,6 +1,3 @@
-extern crate regex;
-use regex::Regex;
-
 fn test(input: &str, expected: &str) {
     let players = input.trim_matches(|c| c == '(' || c == ')')
                        .split(")(")
@@ -29,10 +26,10 @@ fn winner(str1: String, str2: String) -> String {
 }
 
 fn main() {
-    test("(R)(S)", "(R)");
     test("(S)(P)", "(S)");
     test("(P)(R)", "(P)");
     test("(RR)(R)", "(RR)");
+    test("(RR)(RRP)", "(RRP)");
 
     // test("(RSP)(R)(RPS)(SP)", "(RPS)");
     // test("(RPS)(R)(RSP)(SP)(RSSP)", "(RSSP)");
