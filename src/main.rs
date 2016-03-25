@@ -18,7 +18,10 @@ fn winner(str1: String, str2: String) -> String {
 }
 
 fn solve(input: &str) -> String {
-    let players: Vec<&str> = input.trim_matches(|c| c == '(' || c == ')').split(")(").collect();
+    let players: Vec<String> = input.trim_matches(|c| c == '(' || c == ')')
+                                    .split(")(")
+                                    .map(|p| p.to_string())
+                                    .collect();
 
     let level = (players.len() as f32).log2().ceil();
     let seeded_count = (2usize.pow(level as u32)) - players.len();
