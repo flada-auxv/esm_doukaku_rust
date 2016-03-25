@@ -1,14 +1,6 @@
 fn winner(str1: String, str2: String) -> String {
-    let mut repeated_str1 = str1.clone();
-    let mut repeated_str2 = str2.clone();
-
-    for _ in 0..str2.len() {
-        repeated_str1 = repeated_str1 + &str1;
-    }
-
-    for _ in 0..str1.len() {
-        repeated_str2 = repeated_str2 + &str2;
-    }
+    let repeated_str1 = (0..str2.len()).fold(String::new(), |acc, _| acc + &str1);
+    let repeated_str2 = (0..str1.len()).fold(String::new(), |acc, _| acc + &str2);
 
     if repeated_str1 == repeated_str2 {
         return str1;
