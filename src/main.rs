@@ -13,6 +13,13 @@ fn test(input: &str, expected: &str) {
 }
 
 fn winner(str1: String, str2: String) -> String {
+    let repeated_str1 = std::iter::repeat(str1.clone()).take(str2.len()).collect::<String>();
+    let repeated_str2 = std::iter::repeat(str2.clone()).take(str1.len()).collect::<String>();
+
+    if repeated_str1 == repeated_str2 {
+        return str1;
+    }
+
     if (str1 == "R" && str2 == "S") || (str1 == "S" && str2 == "P") ||
        (str1 == "P" && str2 == "R") {
         str1
@@ -25,6 +32,7 @@ fn main() {
     test("(R)(S)", "(R)");
     test("(S)(P)", "(S)");
     test("(P)(R)", "(P)");
+    test("(RR)(R)", "(RR)");
 
     // test("(RSP)(R)(RPS)(SP)", "(RPS)");
     // test("(RPS)(R)(RSP)(SP)(RSSP)", "(RSSP)");
