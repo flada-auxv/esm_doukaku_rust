@@ -1,0 +1,7 @@
+[package]
+name = "janken"
+version = "0.1.0"
+authors = ["flada-auxv <aseknock@gmail.com>"]
+
+[dependencies]
+regex = "0.1"
