@@ -19,7 +19,6 @@ fn winner(str1: String, str2: String) -> String {
 
 fn solve(input: &str) -> String {
     let players: Vec<&str> = input.trim_matches(|c| c == '(' || c == ')').split(")(").collect();
-    // println!("{:?}", players);
 
     let level = (players.len() as f32).log2().ceil() as u32;
     let seeded_count = 2i32.pow(level) - (players.len() as i32);
@@ -35,10 +34,6 @@ fn solve(input: &str) -> String {
     for player in unseeded {
         bracket.push(player.to_string());
     }
-
-    // println!("seeded:   {:?}", seeded);
-    // println!("unseeded: {:?}", unseeded);
-    // println!("bracke:   {:?}", bracket);
 
     while bracket.len() > 1 {
         let mut next_bracket: Vec<String> = Vec::new();
